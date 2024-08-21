@@ -1,6 +1,24 @@
+using Microsoft.EntityFrameworkCore;
+using PhotoGallery.API.DbContexts;
+using PhotoGallery.API.Repositories;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddControllers()
+    .AddJsonOptions(config => config.JsonSerializerOptions.PropertyNamingPolicy = null);
+
+builder.Services.AddDbContext<GalleryContext>(opt =>
+{
+    opt.UseSqlite(builder.Configuration["ConnectionStrings:DATABASE_CONNECTION_STRING"]);
+});
+
+// register the repository
+builder.Services.AddScoped<IGalleryRepository, GalleryRepository>();
+
+// register AutoMapper-related services
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 var app = builder.Build();
 
@@ -8,27 +26,10 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseStaticFiles();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-});
+app.UseAuthorization();
+
+app.MapControllers();
 
 app.Run();
-
-internal record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
