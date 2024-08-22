@@ -29,13 +29,13 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
+	"IIS Express": {
+		"commandName": "IISExpress",
+		"launchBrowser": true,
+		"launchUrl": "api/images",
+		"environmentVariables": {
+			"ASPNETCORE_ENVIRONMENT": "Development"
+		}
+	}
   }
 }

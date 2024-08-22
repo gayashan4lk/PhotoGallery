@@ -5,10 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace PhotoGallery.API.Migrations
+namespace ImageGallery.API.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -18,9 +18,9 @@ namespace PhotoGallery.API.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    Title = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    FileName = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false),
-                    OwnerId = table.Column<string>(type: "TEXT", maxLength: 255, nullable: false)
+                    Title = table.Column<string>(type: "TEXT", maxLength: 150, nullable: false),
+                    FileName = table.Column<string>(type: "TEXT", maxLength: 200, nullable: false),
+                    OwnerId = table.Column<string>(type: "TEXT", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {

@@ -109,7 +109,6 @@ public class GalleryContext(DbContextOptions<GalleryContext> options) : DbContex
                 FileName = "fdfe7329-e05c-41fb-a7c7-4f3226d28c49.jpg",
                 OwnerId = "b7539694-97e7-4dfe-84da-b4256e1ff5c7"
             });
-
         base.OnModelCreating(modelBuilder);
     }
 }

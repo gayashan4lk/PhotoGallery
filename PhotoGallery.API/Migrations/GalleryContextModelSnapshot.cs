@@ -7,7 +7,7 @@ using PhotoGallery.API.DbContexts;
 
 #nullable disable
 
-namespace PhotoGallery.API.Migrations
+namespace ImageGallery.API.Migrations
 {
     [DbContext(typeof(GalleryContext))]
     partial class GalleryContextModelSnapshot : ModelSnapshot
@@ -25,17 +25,17 @@ namespace PhotoGallery.API.Migrations
 
                     b.Property<string>("FileName")
                         .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("OwnerId")
                         .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(50)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasMaxLength(255)
+                        .HasMaxLength(150)
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
