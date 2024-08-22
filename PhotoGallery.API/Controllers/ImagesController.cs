@@ -25,4 +25,19 @@ public class ImagesController(IGalleryRepository repository, IWebHostEnvironment
         return Ok(imagesToReturn);
     }
 
+    [HttpGet("{id}", Name = "GetImage")]
+    public async Task<ActionResult<Image>> GetImage(Guid id)
+    {
+        var imageFromRepo = await _repository.GetImageAsync(id);
+
+        if (imageFromRepo == null)
+        {
+            return NotFound();
+        }
+
+        var imageToReturn = _mapper.Map<Image>(imageFromRepo);
+
+        return Ok(imageToReturn);
+    }
+
 }
